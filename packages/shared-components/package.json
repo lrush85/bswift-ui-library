@@ -1,11 +1,12 @@
 {
-  "name": "@bswift-ui-library/shared-components",
-  "version": "1.0.0",
+  "name": "@lrush85/shared-components",
+  "version": "1.0.1",
   "license": "MIT",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "scripts": {
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "prepublishOnly": "yarn build"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.0",
@@ -13,5 +14,8 @@
     "@rollup/plugin-typescript": "^8.0.0",
     "rollup": "^2.0.0",
     "typescript": "^4.0.0"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }
