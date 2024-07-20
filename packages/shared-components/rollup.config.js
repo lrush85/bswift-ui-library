@@ -19,6 +19,10 @@ export default {
   plugins: [
     nodeResolve(),
     commonjs(),
-    typescript(),
+    typescript({
+      tsconfig: './tsconfig.json',
+      declaration: true,
+      declarationDir: 'dist',
+    }),
   ],
 };

@@ -2,8 +2,8 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const Button = (props) => {
-    return `<button style="color: ${props.color};">${props.label}</button>`;
+var Button = function (props) {
+    return "<button style=\"color: ".concat(props.color, ";\">").concat(props.label, "</button>");
 };
 
 exports.Button = Button;
