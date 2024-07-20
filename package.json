@@ -1,0 +1,18 @@
+{
+  "name": "my-ui-library",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "tsc",
+    "generate-wrappers": "ts-node scripts/generate-wrappers.ts",
+    "prepublishOnly": "npm run generate-wrappers && npm run build"
+  },
+  "devDependencies": {
+    "@angular/core": "^18.1.1",
+    "@types/node": "^14.0.0",
+    "@types/react": "^18.3.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.0.0"
+  }
+}
