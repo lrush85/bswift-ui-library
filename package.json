@@ -6,6 +6,19 @@
     "packages/*"
   ],
   "devDependencies": {
-    "lerna": "^8.1.6"
+    "chokidar-cli": "^3.0.0",
+    "lerna": "^8.1.6",
+    "rollup": "^2.0.0",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.0.0"
+  },
+  "scripts": {
+    "generate-wrappers": "ts-node scripts/generate-wrappers.ts",
+    "build": "npm run generate-wrappers && rollup -c",
+    "watch-wrappers": "chokidar 'packages/shared-components/src/**/*.tsx' -c 'npm run generate-wrappers'"
+  },
+  "dependencies": {
+    "fs-extra": "^11.2.0",
+    "path": "^0.12.7"
   }
 }
