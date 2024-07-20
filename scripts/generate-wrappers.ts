@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { Capitalize } from "../helpers";
 
 // Define the component paths and output paths
 const componentDir = path.join(__dirname, '../src/components');
@@ -9,30 +10,30 @@ const vueWrapperDir = path.join(__dirname, '../src/vue');
 
 const components = fs.readdirSync(componentDir).filter(file => fs.statSync(path.join(componentDir, file)).isDirectory());
 
-components.forEach(Component => {
-  const componentPath = path.join(componentDir, Component);
+components.forEach(component => {
+  const componentPath = path.join(componentDir, component);
   
   // Generate React Wrapper
   const reactWrapperContent = `import React from 'react';
-import ${Component} from '../components/${Component}';
+import { ${Capitalize(component)} } from '../components/${component}';
 
-const ${Component}Wrapper: React.FC<any> = (props) => <${Component} {...props} />;
-export default ${Component}Wrapper;
+const ${Capitalize(component)}Wrapper: React.FC<any> = (props) => <${Capitalize(component)} {...props} />;
+export default ${Capitalize(component)}Wrapper;
   `;
-  fs.writeFileSync(path.join(reactWrapperDir, `${Component}.tsx`), reactWrapperContent);
+  fs.writeFileSync(path.join(reactWrapperDir, `${component}.tsx`), reactWrapperContent);
 
   // Generate Angular Wrapper
   const angularWrapperContent = `import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-${Component.toLowerCase()}',
+  selector: 'app-${component.toLowerCase()}',
   template: '<ng-content></ng-content>'
 })
-export class ${Component}WrapperComponent {
+export class ${Capitalize(component)}WrapperComponent {
   @Input() props: any;
 }
   `;
-  fs.writeFileSync(path.join(angularWrapperDir, `${Component}.ts`), angularWrapperContent);
+  fs.writeFileSync(path.join(angularWrapperDir, `${component}.ts`), angularWrapperContent);
 
   // Generate Vue Wrapper
   const vueWrapperContent = `<template>
@@ -40,17 +41,17 @@ export class ${Component}WrapperComponent {
 </template>
 
 <script>
-import ${Component} from '../../components/${Component}.vue';
+import ${component} from '../../components/${component}.vue';
 export default {
-  components: { ${Component} },
+  components: { ${component} },
   props: ['props'],
   computed: {
     component() {
-      return ${Component};
+      return ${component};
     }
   }
 }
 </script>
   `;
-  fs.writeFileSync(path.join(vueWrapperDir, `${Component}.vue`), vueWrapperContent);
+  fs.writeFileSync(path.join(vueWrapperDir, `${component}.vue`), vueWrapperContent);
 });

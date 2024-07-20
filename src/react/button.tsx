@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button } from '../components';
+import { Button } from '../components/button';
 
-const buttonWrapper: React.FC<any> = (props) => <Button {...props} />;
-export default buttonWrapper;
+const ButtonWrapper: React.FC<any> = (props) => <Button {...props} />;
+export default ButtonWrapper;
   
