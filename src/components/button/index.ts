@@ -6,7 +6,7 @@ export const Button = (props: {
     leftIcon: () => void;
     rightIcon: () => void;
 }) => {
-    return `<button 
+    return (`<button 
                 style="
                     color: ${props.textColor};
                     border: none;
@@ -15,5 +15,5 @@ export const Button = (props: {
                     borderRadius: 6px;
                     backgroundColor: ${props.backgroundColor};
                 "
-            ><span style="marginRight: 5px;>${props.leftIcon}</span>${props.label}<span style="marginLeft: 5px;">${props.rightIcon}</span></button>`;
+            ><span style="marginRight: 5px;>${props.leftIcon}</span>${props.label}<span style="marginLeft: 5px;">${props.rightIcon}</span></button>`) as any;
   };

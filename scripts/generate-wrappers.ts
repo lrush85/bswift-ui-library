@@ -14,16 +14,24 @@ components.forEach(component => {
   const componentPath = path.join(componentDir, component);
   
   // Generate React Wrapper
-  const reactWrapperContent = `import React from 'react';
-import { ${Capitalize(component)} } from '../components/${component}';
+  const reactWrapperContent = `
+    import React from 'react';
+    import { ${Capitalize(component)} } from '../components';
 
-const ${Capitalize(component)}Wrapper: React.FC<any> = (props) => <${Capitalize(component)} {...props} />;
-export default ${Capitalize(component)}Wrapper;
+    const ${Capitalize(component)}Wrapper: React.FC<any> = (props) => {
+      return (
+        <${Capitalize(component)} {...props} />
+      );
+    };
+
+    export default ${Capitalize(component)}Wrapper;
   `;
+    
   fs.writeFileSync(path.join(reactWrapperDir, `${component}.tsx`), reactWrapperContent);
 
-  // Generate Angular Wrapper
-  const angularWrapperContent = `import { Component, Input } from '@angular/core';
+
+// Generate Angular Wrapper
+const angularWrapperContent = `import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-${component.toLowerCase()}',
